@@ -106,7 +106,7 @@
       <updated>1577077407641</updated>
       <workItem from="1577077410428" duration="19358000" />
       <workItem from="1577109184564" duration="8057000" />
-      <workItem from="1577161995701" duration="16136000" />
+      <workItem from="1577161995701" duration="16417000" />
     </task>
     <task id="LOCAL-00001" summary="第一次更新">
       <created>1577118937710</created>
@@ -171,7 +171,21 @@
       <option name="project" value="LOCAL" />
       <updated>1577197276316</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="第七次更新(更新README)">
+      <created>1577200213171</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1577200213171</updated>
+    </task>
+    <task id="LOCAL-00011" summary="第八次更新(更新README)">
+      <created>1577200285498</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1577200285498</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -186,9 +200,14 @@
     <MESSAGE value="第五次更新(用户注销安全性检查)" />
     <MESSAGE value="第六次更新(CSS更新)" />
     <MESSAGE value="第七次更新(更新README)" />
-    <option name="LAST_COMMIT_MESSAGE" value="第七次更新(更新README)" />
+    <MESSAGE value="第八次更新(更新README)" />
+    <option name="LAST_COMMIT_MESSAGE" value="第八次更新(更新README)" />
   </component>
   <component name="WindowStateProjectService">
+    <state x="552" y="181" key="#Notifications" timestamp="1577200336703">
+      <screen x="0" y="0" width="1920" height="1040" />
+    </state>
+    <state x="552" y="181" key="#Notifications/0.0.1920.1040@0.0.1920.1040" timestamp="1577200336703" />
     <state x="552" y="181" key="#SQL_Dialects" timestamp="1577107411872">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -197,10 +216,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="760" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577077960895" />
-    <state x="725" y="51" key="CommitChangelistDialog2" timestamp="1577200212648">
+    <state x="725" y="51" key="CommitChangelistDialog2" timestamp="1577200285012">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="725" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1577200212648" />
+    <state x="725" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1577200285012" />
     <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1577200251291">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -225,10 +244,10 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="714" y="197" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1577099447552" />
-    <state x="552" y="256" key="Vcs.Push.Dialog.v2" timestamp="1577200214883">
+    <state x="552" y="256" key="Vcs.Push.Dialog.v2" timestamp="1577200361608">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1577200214883" />
+    <state x="552" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1577200361608" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/BookManage$BookManage.coverage" NAME="BookManage Coverage Results" MODIFIED="1577195009693" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />

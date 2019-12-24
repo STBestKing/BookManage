@@ -2,7 +2,7 @@
 
 + 1.终端输入：**git clone https://github.com/STBestKing/BookManage.git**
 
-+ 2.进入项目目录
++ 2.进入项目目录：**cd BookManage**
 
 + 3.安装pipenv：**pip install pipenv**
 
