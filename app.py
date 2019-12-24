@@ -130,8 +130,9 @@ def logout():
 # security check
 def manager_judge():
     if not session['user_id']:
-        error = 'Invalid manager, please login'
-        return render_template('manager_login.html', error=error)
+        if session['user_id'] != app.config['MANAGER_NAME']:
+            error = 'Invalid manager, please login'
+            return render_template('manager_login.html', error=error)
 
 
 # security check
@@ -347,6 +348,39 @@ def reader_books():
     reader_judge()
     return render_template('reader_books.html',
                            books=query_db('''select * from books''', []))
+
+
+@app.route('/manager/query', methods=['GET', 'POST'])
+def manager_query():
+    manager_judge()
+    error = None
+    books = None
+    if request.method == 'POST':
+        if request.form['item'] == 'book_id':
+            if not request.form['query']:
+                error = 'You have to input the book ISBN'
+            else:
+                books = query_db('''select * from books where book_id = ?''',
+                                 [request.form['query']])
+                if not books:
+                    error = 'Invalid book ISBN'
+        elif request.form['item'] == 'author':
+            if not request.form['query']:
+                error = 'You have to input the book author'
+            else:
+                books = query_db('''select * from books where author = ?''',
+                                 [request.form['query']])
+                if not books:
+                    error = 'Invalid book author'
+        else:
+            if not request.form['query']:
+                error = 'You have to input the book name'
+            else:
+                books = query_db('''select * from books where book_name = ?''',
+                                 [request.form['query']])
+                if not books:
+                    error = 'Invalid book name'
+    return render_template('manager_query.html', books=books, error=error)
 
 
 @app.route('/reader/query', methods=['GET', 'POST'])
