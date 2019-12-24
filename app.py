@@ -3,7 +3,7 @@ from flask import Flask, request, session, url_for, redirect, render_template, g
 from werkzeug import check_password_hash, generate_password_hash
 import time
 
-
+# config
 DATABASE = 'book.db'
 DEBUG = True
 SECRET_KEY = 'development key'
@@ -12,10 +12,11 @@ MANAGER_PWD = '123456'
 
 app = Flask(__name__)
 
+# lode_config
 app.config.from_object(__name__)
-app.config.from_envvar('FLASK_SETTINGS', silent=True)
 
 
+# get database connect
 def get_db():
     top = _app_ctx_stack.top
     if not hasattr(top, 'sqlite_db'):
@@ -24,6 +25,7 @@ def get_db():
     return top.sqlite_db
 
 
+# close database
 @app.teardown_appcontext
 def close_database(exception):
     top = _app_ctx_stack.top
@@ -31,6 +33,7 @@ def close_database(exception):
         top.sqlite_db.close()
 
 
+# init database
 def init_db():
     with app.app_context():
         db = get_db()
@@ -39,14 +42,16 @@ def init_db():
         db.commit()
 
 
+# query function
 def query_db(query, args=(), one=False):
     cur = get_db().execute(query, args)
     rv = cur.fetchall()
     return (rv[0] if rv else None) if one else rv
 
 
+# get user name
 def get_user_id(username):
-    rv = query_db('select user_id from users where user_name = ?',
+    rv = query_db('''select user_id from users where user_name = ?''',
                   [username], one=True)
     return rv[0] if rv else None
 
@@ -107,8 +112,8 @@ def register():
             error = 'The username is already taken'
         else:
             db = get_db()
-            db.execute('''insert into users (user_name, pwd, college, num, email) \
-				values (?, ?, ?, ?, ?) ''', [request.form['username'], generate_password_hash(
+            db.execute('''insert into users (user_name, pwd, college, num, email)
+                values (?, ?, ?, ?, ?) ''', [request.form['username'], generate_password_hash(
                 request.form['password']), request.form['college'], request.form['number'],
                                              request.form['email']])
             db.commit()
@@ -122,13 +127,14 @@ def logout():
     return redirect(url_for('index'))
 
 
-# 安全性检查
+# security check
 def manager_judge():
     if not session['user_id']:
         error = 'Invalid manager, please login'
         return render_template('manager_login.html', error=error)
 
 
+# security check
 def reader_judge():
     if not session['user_id']:
         error = 'Invalid reader, please login'
@@ -139,7 +145,7 @@ def reader_judge():
 def manager_books():
     manager_judge()
     return render_template('manager_books.html',
-                           books=query_db('select * from books', []))
+                           books=query_db('''select * from books''', []))
 
 
 @app.route('/manager')
@@ -171,19 +177,19 @@ def manger_user_modify(id):
             error = 'You have to input your name'
         elif not request.form['password']:
             db = get_db()
-            db.execute('''update users set user_name=?, college=?, num=? \
-				, email=? where user_id=? ''', [request.form['username'],
-                                                request.form['college'], request.form['number'],
-                                                request.form['email'], id])
+            db.execute('''update users set user_name=?, college=?, num=?, 
+                        email=? where user_id=? ''', [request.form['username'],
+                                                      request.form['college'], request.form['number'],
+                                                      request.form['email'], id])
             db.commit()
             return redirect(url_for('manager_user', id=id))
         else:
             db = get_db()
-            db.execute('''update users set user_name=?, pwd=?, college=?, num=? \
-				, email=? where user_id=? ''', [request.form['username'],
-                                                generate_password_hash(request.form['password']),
-                                                request.form['college'], request.form['number'],
-                                                request.form['email'], id])
+            db.execute('''update users set user_name=?, pwd=?, college=?, num=?,
+                            email=? where user_id=? ''', [request.form['username'],
+                                                          generate_password_hash(request.form['password']),
+                                                          request.form['college'], request.form['number'],
+                                                          request.form['email'], id])
             db.commit()
             return redirect(url_for('manager_user', id=id))
     return render_template('manager_user_modify.html', user=user, error=error)
@@ -216,10 +222,10 @@ def manager_books_add():
         else:
             db = get_db()
             db.execute('''insert into books (book_id, book_name, author, publish_com,
-				publish_date) values (?, ?, ?, ?, ?) ''', [request.form['id'],
-                                                           request.form['name'], request.form['author'],
-                                                           request.form['company'],
-                                                           request.form['date']])
+                        publish_date) values (?, ?, ?, ?, ?) ''', [request.form['id'],
+                                                                   request.form['name'], request.form['author'],
+                                                                   request.form['company'],
+                                                                   request.form['date']])
             db.commit()
             return redirect(url_for('manager_books'))
     return render_template('manager_books_add.html', error=error)
@@ -255,8 +261,7 @@ def manager_book(id):
     current_time = time.strftime('%Y-%m-%d', time.localtime(time.time()))
     if request.method == 'POST':
         db = get_db()
-        db.execute('''update historys set status = ?, date_return = ?  where book_id=?
-			and user_name=? and status=? ''',
+        db.execute('''update historys set status=?, date_return=? where book_id=?and user_name=? and status=? ''',
                    ['retruned', current_time, id, name[0], 'not return'])
         db.execute('''delete from borrows where book_id = ? ''', [id])
         db.commit()
@@ -314,22 +319,29 @@ def reader_modify():
             error = 'You have to input your name'
         elif not request.form['password']:
             db = get_db()
-            db.execute('''update users set user_name=?, college=?, num=? \
-				, email=? where user_id=? ''', [request.form['username'],
-                                                request.form['college'], request.form['number'],
-                                                request.form['email'], id])
+            db.execute('''update users set user_name=?, college=?, num=?,
+                        email=? where user_id=? ''', [request.form['username'],
+                                                      request.form['college'], request.form['number'],
+                                                      request.form['email'], id])
             db.commit()
             return redirect(url_for('reader_info'))
         else:
             db = get_db()
-            db.execute('''update users set user_name=?, pwd=?, college=?, num=? \
-				, email=? where user_id=? ''', [request.form['username'],
-                                                generate_password_hash(request.form['password']),
-                                                request.form['college'], request.form['number'],
-                                                request.form['email'], id])
+            db.execute('''update users set user_name=?, pwd=?, college=?, num=?,
+                        email=? where user_id=? ''', [request.form['username'],
+                                                      generate_password_hash(request.form['password']),
+                                                      request.form['college'], request.form['number'],
+                                                      request.form['email'], id])
             db.commit()
             return redirect(url_for('reader_info'))
     return render_template('reader_modify.html', user=user, error=error)
+
+
+@app.route('/reader/books')
+def reader_books():
+    reader_judge()
+    return render_template('reader_books.html',
+                           books=query_db('''select * from books''', []))
 
 
 @app.route('/reader/query', methods=['GET', 'POST'])
@@ -376,12 +388,12 @@ def reader_book(id):
                 error = 'You can\'t borrow more than three books.'
             else:
                 db = get_db()
-                db.execute('''insert into borrows (user_name, book_id, date_borrow, \
-					date_return) values (?, ?, ?, ?) ''', [g.user, id,
-                                                           current_time, return_time])
-                db.execute('''insert into historys (user_name, book_id, date_borrow, \
-					status) values (?, ?, ?, ?) ''', [g.user, id,
-                                                      current_time, 'not return'])
+                db.execute('''insert into borrows (user_name, book_id, date_borrow,
+                            date_return) values (?, ?, ?, ?) ''', [g.user, id,
+                                                                   current_time, return_time])
+                db.execute('''insert into historys (user_name, book_id, date_borrow,
+                            status) values (?, ?, ?, ?) ''', [g.user, id,
+                                                              current_time, 'not return'])
                 db.commit()
                 return redirect(url_for('reader_book', id=id))
     return render_template('reader_book.html', book=book, reader=reader, error=error)
@@ -390,12 +402,11 @@ def reader_book(id):
 @app.route('/reader/history', methods=['GET', 'POST'])
 def reader_history():
     reader_judge()
-    historys = query_db(
-        '''select * from historys, books where historys.book_id = books.book_id and historys.user_name=? ''', [g.user])
-
+    historys = query_db('''select * from historys,
+                        books where historys.book_id = books.book_id and historys.user_name=? ''', [g.user])
     return render_template('reader_history.html', historys=historys)
 
 
 if __name__ == '__main__':
     init_db()
-    app.run(debug=True)
+    app.run()

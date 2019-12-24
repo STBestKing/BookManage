@@ -1,8 +1,9 @@
 {% extends 'layout.html' %}
 {% block title %} 欢迎使用 {% endblock %}
 {% block link %} 
-	<a href="{{url_for('logout')}}"> 注销[{{g.user}}] </a> | 
-	<a href="{{url_for('reader_query')}}"> 查询 </a> | 
+	<a href="{{url_for('logout')}}"> 注销[{{g.user}}] </a> |
+    <a href="{{url_for('reader_books') }}"> 图书总览 </a> |
+	<a href="{{url_for('reader_query')}}"> 查询 </a> |
 	<a href="{{url_for('reader_info')}}"> 查看个人信息 </a> |
 	<a href="{{url_for('reader_history')}}"> 查看阅读记录 </a>
 
