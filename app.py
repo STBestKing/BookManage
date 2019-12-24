@@ -198,10 +198,15 @@ def manger_user_modify(id):
 @app.route('/manager/user/deleter/<id>', methods=['GET', 'POST'])
 def manger_user_delete(id):
     manager_judge()
-    db = get_db()
-    db.execute('''delete from users where user_id=? ''', [id])
-    db.commit()
-    return redirect(url_for('manager_users'))
+    books = None
+    books = query_db('''select * from borrows where user_id=?''', [id])
+    if books is None:
+        db = get_db()
+        db.execute('''delete from users where user_id=? ''', [id])
+        db.commit()
+        return redirect(url_for('manager_users'))
+    else:
+        return redirect(url_for('manager_users'))
 
 
 @app.route('/manager/books/add', methods=['GET', 'POST'])
