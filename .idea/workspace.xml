@@ -2,11 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="7ac2c891-f051-489b-b9bc-f01acc37542c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/templates/manager_query.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/book.db" beforeDir="false" afterPath="$PROJECT_DIR$/book.db" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/templates/manager.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/manager.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -109,7 +105,8 @@
       <updated>1577077407641</updated>
       <workItem from="1577077410428" duration="19358000" />
       <workItem from="1577109184564" duration="8057000" />
-      <workItem from="1577161995701" duration="18645000" />
+      <workItem from="1577161995701" duration="18839000" />
+      <workItem from="1577202894202" duration="547000" />
     </task>
     <task id="LOCAL-00001" summary="第一次更新">
       <created>1577118937710</created>
@@ -195,7 +192,14 @@
       <option name="project" value="LOCAL" />
       <updated>1577200429678</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="第九次更新(修复安全性检查存在的bug，增加管理员查找功能)">
+      <created>1577202757834</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1577202757834</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -211,7 +215,8 @@
     <MESSAGE value="第六次更新(CSS更新)" />
     <MESSAGE value="第七次更新(更新README)" />
     <MESSAGE value="第八次更新(更新README)" />
-    <option name="LAST_COMMIT_MESSAGE" value="第八次更新(更新README)" />
+    <MESSAGE value="第九次更新(修复安全性检查存在的bug，增加管理员查找功能)" />
+    <option name="LAST_COMMIT_MESSAGE" value="第九次更新(修复安全性检查存在的bug，增加管理员查找功能)" />
   </component>
   <component name="WindowStateProjectService">
     <state x="552" y="181" key="#Notifications" timestamp="1577200336703">
@@ -226,26 +231,26 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="760" y="176" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1920.1040@0.0.1920.1040" timestamp="1577077960895" />
-    <state x="725" y="51" key="CommitChangelistDialog2" timestamp="1577200429173">
+    <state x="725" y="51" key="CommitChangelistDialog2" timestamp="1577202757337">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="725" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1577200429173" />
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1577202648880">
+    <state x="725" y="51" key="CommitChangelistDialog2/0.0.1920.1040@0.0.1920.1040" timestamp="1577202757337" />
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom" timestamp="1577203525619">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1577202648880" />
-    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1577202648879">
+    <state width="1877" height="282" key="GridCell.Tab.0.bottom/0.0.1920.1040@0.0.1920.1040" timestamp="1577203525619" />
+    <state width="1877" height="282" key="GridCell.Tab.0.center" timestamp="1577203525619">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1577202648879" />
-    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1577202648879">
+    <state width="1877" height="282" key="GridCell.Tab.0.center/0.0.1920.1040@0.0.1920.1040" timestamp="1577203525619" />
+    <state width="1877" height="282" key="GridCell.Tab.0.left" timestamp="1577203525619">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1577202648879" />
-    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1577202648879">
+    <state width="1877" height="282" key="GridCell.Tab.0.left/0.0.1920.1040@0.0.1920.1040" timestamp="1577203525619" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right" timestamp="1577203525619">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1577202648879" />
+    <state width="1877" height="282" key="GridCell.Tab.0.right/0.0.1920.1040@0.0.1920.1040" timestamp="1577203525619" />
     <state width="220" height="477" key="HiddenNamespacesPopup" timestamp="1577077956880">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
@@ -254,12 +259,12 @@
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
     <state x="714" y="197" key="SettingsEditor/0.0.1920.1040@0.0.1920.1040" timestamp="1577099447552" />
-    <state x="552" y="256" key="Vcs.Push.Dialog.v2" timestamp="1577200431704">
+    <state x="552" y="256" key="Vcs.Push.Dialog.v2" timestamp="1577202759619">
       <screen x="0" y="0" width="1920" height="1040" />
     </state>
-    <state x="552" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1577200431704" />
+    <state x="552" y="256" key="Vcs.Push.Dialog.v2/0.0.1920.1040@0.0.1920.1040" timestamp="1577202759619" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/BookManage$BookManage.coverage" NAME="BookManage Coverage Results" MODIFIED="1577202648868" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/BookManage$BookManage.coverage" NAME="BookManage Coverage Results" MODIFIED="1577203525588" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>

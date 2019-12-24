@@ -130,9 +130,11 @@ def logout():
 # security check
 def manager_judge():
     if not session['user_id']:
-        if session['user_id'] != app.config['MANAGER_NAME']:
-            error = 'Invalid manager, please login'
-            return render_template('manager_login.html', error=error)
+        error = 'Invalid manager, please login'
+        return render_template('manager_login.html', error=error)
+    if session['user_id'] != app.config['MANAGER_NAME']:
+        error = 'Invalid manager, please login'
+        return render_template('manager_login.html', error=error)
 
 
 # security check
