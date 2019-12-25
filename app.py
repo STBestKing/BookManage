@@ -42,6 +42,34 @@ def init_db():
         db.commit()
 
 
+def backup_db(error):
+    conn = sqlite3.connect(app.config['DATABASE'])
+    with open('bookbackup.sql', 'wb') as f:
+        for line in conn.iterdump():
+            data = line + '\n'
+            data = data.encode("UTF-8")
+            f.write(data)
+    error = '数据库备份成功'
+    return error
+
+
+def recover_db(error):
+    with app.app_context():
+        db = get_db()
+        db.execute('''drop index if exists books_id_index''')
+        db.execute('''drop index if exists books_name_index''')
+        db.execute('''drop index if exists books_author_index''')
+        db.execute('''drop table if exists books''')
+        db.execute('''drop table if exists borrows''')
+        db.execute('''drop table if exists historys''')
+        db.execute('''drop table if exists users''')
+        with app.open_resource('bookbackup.sql', mode='r') as f:
+            db.cursor().executescript(f.read())
+        db.commit()
+    error = '数据库恢复成功'
+    return error
+
+
 # query function
 def query_db(query, args=(), one=False):
     cur = get_db().execute(query, args)
@@ -66,6 +94,23 @@ def before_request():
 @app.route('/')
 def index():
     return render_template('index.html')
+
+
+@app.route('/manager/backup')
+def manager_backup_db():
+    manager_judge()
+    error = None
+    error = backup_db(error)
+    return render_template('manager.html', error=error)
+
+
+@app.route('/manager/recover')
+def manager_recover_db():
+    manager_judge()
+    error = None
+    error = recover_db(error)
+    ##init_db()
+    return render_template('manager.html', error=error)
 
 
 @app.route('/manager_login', methods=['GET', 'POST'])
@@ -153,8 +198,9 @@ def manager_books():
 
 @app.route('/manager')
 def manager():
+    error = None
     manager_judge()
-    return render_template('manager.html')
+    return render_template('manager.html', error=error)
 
 
 @app.route('/reader')
